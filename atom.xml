@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://DreamFish12450.github.io</id>
     <title>DreamFish</title>
-    <updated>2020-03-25T14:30:43.969Z</updated>
+    <updated>2020-03-25T14:32:09.147Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://DreamFish12450.github.io"/>
     <link rel="self" href="https://DreamFish12450.github.io/atom.xml"/>
@@ -11,35 +11,161 @@
     <icon>https://DreamFish12450.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, DreamFish</rights>
     <entry>
-        <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://DreamFish12450.github.io/post/hello-gridea/</id>
-        <link href="https://DreamFish12450.github.io/post/hello-gridea/">
+        <title type="html"><![CDATA[THIS FOR JS]]></title>
+        <id>https://DreamFish12450.github.io/post/this-for-js/</id>
+        <link href="https://DreamFish12450.github.io/post/this-for-js/">
         </link>
-        <updated>2018-12-11T16:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+        <updated>2020-03-25T12:55:15.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
 <!-- more -->
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="https://gridea.dev/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
+<h1 id="js中的-this">JS中的 <code>this</code></h1>
+<h1 id="首先要区分js的this和jquery中的this">首先要区分JS的<code>this</code>和jquery中的<code>$(this)</code></h1>
+<h1 id="后者是将前者一个js对象包装成jquery对象">后者是将前者（一个JS对象）包装成JQuery对象</h1>
+<p>那么如何判断<code>this</code>呢。在网上找到了个<a href="https://cnodejs.org/topic/583d05b727d001d606ac1a54">决策树</a>，感觉挺好的（<s>不是</s>）</p>
+<pre><code>    if (this 位于非箭头函数中) {
+    if (函数使用 new 调用，即作为构造函数被调用) {  1️⃣
+
+        [this 指向新创建的对象]
+    } else if (函数使用 . 调用，即作为对象方法被调用) {2️⃣
+        [this 指向 . 之前的对象]
+    } else {
+        if (严格模式) {3️⃣
+        [this 为 undefined]
+        } else {
+        [this 为 null]
+        [但，使用 undefined 或者 null 指定 this 时，this 指向全局对象]
+        [this 指向全局对象]
+        }
+    }
+    } else if (this 位于箭头函数中) {4️⃣
+    [词法分析时，函数所处作用域的 this]
+    } else {
+    [this 指向全局对象]
+    }
+</code></pre>
+<h3 id="1️⃣-做一个解释在一般情况下this都是指向全局对象window在浏览器内的-而一般的函数调用方式都是给这个全局对象增加属性">1️⃣ 做一个解释在一般情况下this都是指向全局对象(window在浏览器内)的 而一般的函数调用方式都是给这个全局对象增加属性</h3>
+<p>  给个例子:</p>
+<pre><code>    function coordinate(x, y){
+        this.x = x;
+        this.y = y;
+    }
+    var p1 = new coordinate(2,3)
+    console.log(p1)
+    //显示 coordinate {x: 2, y: 3}
+    var p2 = coordinate(3,4)
+    console.log(p2)
+    //显示 undefined
+</code></pre>
+<p>那么这个新的x和y属性去哪里了呢。由前面可知一般情况下或者说,未对this进行指定情况下,其指向全局对象。<br>
+  测试一下：</p>
+<pre><code>console.log(window.x,window.y)
+//显示  3 4
+</code></pre>
+<h3 id="2️⃣所指的则是一般的对象的方法调用方式如下代码所示">2️⃣所指的则是一般的对象的方法调用方式如下代码所示</h3>
+<pre><code>    const obj1 = {
+        x: 1,
+        y: 1,
+        setX(x, y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
+obj1.setX(3,4)
+console.log(obj1)
+//打印  {x: 3, y: 4, setX: ƒ}
+</code></pre>
+<h3 id="3️⃣在严格模式下如果将this指向undefined其指向为undefined若将其指向设置成null其指向即为null-那么后面我们要考虑的是如何改变this的指向是不是可以采用直接赋值的方式-显然并不这是不可行的-this不能在执行期间被赋值-这时候我们考虑使用call方法-代码和打印结果如下">3️⃣在严格模式下如果将this指向undefined其指向为undefined，若将其指向设置成null其指向即为null。那么后面我们要考虑的是如何改变this的指向？是不是可以采用直接赋值的方式。显然（并不）这是不可行的。<code>this</code>不能在执行期间被赋值！！。这时候我们考虑使用<code>call()</code>方法。代码和打印结果如下：</h3>
+<pre><code>    function demo1() {
+        'use strict';
+        return this;
+    }
+    function demo2() {
+        return this;
+    }
+demo1.call(undefined)
+//打印 undefined
+demo1.call(null)
+//打印 null
+
+</code></pre>
+<p>那么如果在<code>非严格模式</code>下会是什么样的呢。</p>
+<pre><code>demo2.call(undefined)
+//打印 Window {parent: Window, opener: null, top: Window, length: 0, frames: Window, …}
+</code></pre>
+<p>可以很明显的观察出他的this的指向变成了<code>全局对象</code>。</p>
+<h3 id="后面港港如何对this的指向进行改变-一般使用三个函数bindcallapply改变其指向">后面港港如何对<code>this</code>的指向进行改变。一般使用三个函数<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind">bind()</a>,<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/call">call()</a>,<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/apply">apply()</a>改变其指向。</h3>
+<br>
+<p><code>call(thisArg, arg1, arg2, ... )</code><br>
+方法使用一个指定的 this 值和单独给出的一个或多个参数来调用一个函数。<br><br>
+注意：该方法的语法和作用与 apply() 方法类似，只有一个区别，就是 call() 方法接受的是一个<code>参数列表</code>，而 apply() 方法接受的是一个包含<code>多个参数的数组</code>。（摘自MDN）<br><br>
+<code>注：</code>在非严格模式下若thisArg的取值为null或者undefined 会自动变成全局对象；apply也是同样的道理<br><br>
+<code>bind(thisArg,arg1 …)</code><br><br>
+bind() 方法创建一个新的函数，在 bind() 被调用时，这个新函数的 this 被指定为 bind<br>(thisArg,arg1 …) 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。（摘自MDN）.<br><br>
+举一个简单的应用：-------可以将this绑定到thisArg对象上。可以很好的在函数中的变量名与全局中的对象名相同时，选择到对象中的变量名。<br></p>
+<pre><code> this.x = 5;
+   var obj3 = {
+       x: 19,
+       getX: function() { return this.x; }
+   };
+   var unbindX = obj3.getX;
+   unbindX();
+   //打印的是全局变量x 5
+   var bindX = unbindX.bind(obj3);
+   //将他绑定对象obj3上。所以他的this也指向了obj3
+   bindX();
+   //这时候打印19
+</code></pre>
+<h2 id="4️⃣对于箭头函数中一般不推荐在按钮的绑定事件中使用this指向的基本上都是window对象那么如上文的决策树所说什么是词法分析呢javascript作为函数性编程的语言-其在函数执行前函数块内语句的执行顺序就已经确定-大体顺序如下所示">4️⃣对于箭头函数中，一般不推荐在按钮的绑定事件中使用this指向的基本上都是window对象那么如上文的决策树所说什么是<code>词法分析</code>呢，javascript作为函数性编程的语言。其在函数执行前，函数块内语句的执行顺序就已经确定。大体顺序如下所示</h2>
+ <br>
+<p><img src="https://DreamFish12450.github.io/post-images/1585145085877.png" alt="" loading="lazy"><br>
+<br><br>
+需要注意赋值和声明的区别，赋值语句在执行使才会起作用<br>
+下面举一个栗子：<br>
+<img src="https://DreamFish12450.github.io/post-images/1585145160333.jpg" alt="" loading="lazy"></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[prop()与attr()]]></title>
+        <id>https://DreamFish12450.github.io/post/prop/</id>
+        <link href="https://DreamFish12450.github.io/post/prop/">
+        </link>
+        <updated>2019-01-25T11:09:48.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<p><code>attr(key)</code> 获取属性其一般用于检索HTML对象的属性</p>
+<p><code>attr(key, value)</code>设置属性<br><br>
+<code>prop（）</code>属性操作的是JS对象其一般用来获取对象的属性<br><br>
+来自菜鸟教程对于prop（）方法的解释<br><br>
+返回属性的值：<br><br>
+<code>$(selector).prop(property)</code></p>
+<p>设置属性和值：</p>
+<p><code>$(selector).prop(property,value)</code></p>
+<p>使用函数设置属性和值：</p>
+<p><code>$(selector).prop(property,function(index,currentvalue))</code></p>
+<p>设置多个属性和值：<br>
+<code>$(selector).prop({property:value, property:value,...})</code><br>
+对第三个做一个简单的解释：使用其去对复选框进行全选<br></p>
+<pre><code>&lt;body&gt;
+    &lt;input type=&quot;checkbox&quot; value=&quot;basektball&quot; name=&quot;hobby&quot;&gt;篮球
+    &lt;input type=&quot;checkbox&quot; value=&quot;footerball&quot; name=&quot;hobby&quot;&gt;足球
+    &lt;input type=&quot;checkbox&quot; value=&quot;writing&quot; checked=&quot;checked&quot; name=&quot;hobby&quot;&gt;书法
+    &lt;input type=&quot;checkbox&quot; value=&quot;music&quot; name=&quot;hobby&quot;&gt;音乐
+    &lt;br&gt;
+    &lt;input type=&quot;checkbox&quot; value=&quot;paint&quot; name=&quot;hobby&quot;&gt;绘画
+    &lt;input type=&quot;checkbox&quot; value=&quot;box&quot; name=&quot;hobby&quot;&gt;散打
+    &lt;input type=&quot;checkbox&quot; value=&quot;yoga&quot; checked=&quot;checked&quot; name=&quot;hobby&quot;&gt;瑜伽
+    &lt;input type=&quot;checkbox&quot; value=&quot;another&quot; name=&quot;hobby&quot;&gt;其他
+    &lt;button onclick=&quot; return check()&quot;&gt;111111111&lt;/button&gt;
+
+&lt;/body&gt;
+&lt;script&gt;
+    check = () =&gt; {
+        $(&quot;[name = 'hobby']&quot;).prop('checked', (index,currenValue) =&gt; {
+            console.log($($(&quot;[name = 'hobby']&quot;)[index]).prop('checked', true));
+            // 第一个通过Index获取到的是DOM对象，因为prop方法是jquery对象的专有，所以需要用jquery运算符将其转换为jquery对象
+        })
+    };
+&lt;/script&gt;
+</code></pre>
 ]]></content>
     </entry>
 </feed>

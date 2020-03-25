@@ -2,24 +2,23 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Hello Gridea | DreamFish</title>
+<title>prop()与attr() | DreamFish</title>
 <link rel="shortcut icon" href="https://DreamFish12450.github.io/favicon.ico?v=1585146725837">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://DreamFish12450.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Hello Gridea | DreamFish - Atom Feed" href="https://DreamFish12450.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="prop()与attr() | DreamFish - Atom Feed" href="https://DreamFish12450.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="👏  欢迎使用 Gridea ！
-✍️  Gridea 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...
-
-Github
-Gridea 主页
-示例网站
-特性👇
-📝  你可以使用最酷的 Markdo..." />
-    <meta name="keywords" content="Gridea" />
+    <meta name="description" content="
+attr(key) 获取属性其一般用于检索HTML对象的属性
+attr(key, value)设置属性
+prop（）属性操作的是JS对象其一般用来获取对象的属性
+来自菜鸟教程对于prop（）方法的解释
+返回属性的值：
+$(selector..." />
+    <meta name="keywords" content="jquery" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -81,56 +80,64 @@ Gridea 主页
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Hello Gridea
+              prop()与attr()
             </h2>
             <div class="post-info">
               <span>
-                2018-12-12
+                2019-01-25
               </span>
               <span>
                 2 min read
               </span>
               
-                <a href="https://DreamFish12450.github.io/tag/A8pZLPPWB/" class="post-tag">
-                  # Gridea
+                <a href="https://DreamFish12450.github.io/tag/dWggrRojD4/" class="post-tag">
+                  # jquery
                 </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-<!-- more -->
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="https://gridea.dev/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
+                <!-- more -->
+<p><code>attr(key)</code> 获取属性其一般用于检索HTML对象的属性</p>
+<p><code>attr(key, value)</code>设置属性<br><br>
+<code>prop（）</code>属性操作的是JS对象其一般用来获取对象的属性<br><br>
+来自菜鸟教程对于prop（）方法的解释<br><br>
+返回属性的值：<br><br>
+<code>$(selector).prop(property)</code></p>
+<p>设置属性和值：</p>
+<p><code>$(selector).prop(property,value)</code></p>
+<p>使用函数设置属性和值：</p>
+<p><code>$(selector).prop(property,function(index,currentvalue))</code></p>
+<p>设置多个属性和值：<br>
+<code>$(selector).prop({property:value, property:value,...})</code><br>
+对第三个做一个简单的解释：使用其去对复选框进行全选<br></p>
+<pre><code>&lt;body&gt;
+    &lt;input type=&quot;checkbox&quot; value=&quot;basektball&quot; name=&quot;hobby&quot;&gt;篮球
+    &lt;input type=&quot;checkbox&quot; value=&quot;footerball&quot; name=&quot;hobby&quot;&gt;足球
+    &lt;input type=&quot;checkbox&quot; value=&quot;writing&quot; checked=&quot;checked&quot; name=&quot;hobby&quot;&gt;书法
+    &lt;input type=&quot;checkbox&quot; value=&quot;music&quot; name=&quot;hobby&quot;&gt;音乐
+    &lt;br&gt;
+    &lt;input type=&quot;checkbox&quot; value=&quot;paint&quot; name=&quot;hobby&quot;&gt;绘画
+    &lt;input type=&quot;checkbox&quot; value=&quot;box&quot; name=&quot;hobby&quot;&gt;散打
+    &lt;input type=&quot;checkbox&quot; value=&quot;yoga&quot; checked=&quot;checked&quot; name=&quot;hobby&quot;&gt;瑜伽
+    &lt;input type=&quot;checkbox&quot; value=&quot;another&quot; name=&quot;hobby&quot;&gt;其他
+    &lt;button onclick=&quot; return check()&quot;&gt;111111111&lt;/button&gt;
+
+&lt;/body&gt;
+&lt;script&gt;
+    check = () =&gt; {
+        $(&quot;[name = 'hobby']&quot;).prop('checked', (index,currenValue) =&gt; {
+            console.log($($(&quot;[name = 'hobby']&quot;)[index]).prop('checked', true));
+            // 第一个通过Index获取到的是DOM对象，因为prop方法是jquery对象的专有，所以需要用jquery运算符将其转换为jquery对象
+        })
+    };
+&lt;/script&gt;
+</code></pre>
 
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E7%89%B9%E6%80%A7">特性👇</a></li>
-</ul>
-</li>
-</ul>
-
+                
               </div>
             </div>
           </article>
