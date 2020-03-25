@@ -1,0 +1,291 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>THIS FOR JS | DreamFish</title>
+<link rel="shortcut icon" href="https://DreamFish12450.github.io/favicon.ico?v=1585146479515">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://DreamFish12450.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="THIS FOR JS | DreamFish - Atom Feed" href="https://DreamFish12450.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="
+JS中的 this
+首先要区分JS的this和jquery中的$(this)
+后者是将前者（一个JS对象）包装成JQuery对象
+那么如何判断this呢。在网上找到了个决策树，感觉挺好的（不是）
+    if (this 位于非箭头函数中..." />
+    <meta name="keywords" content="js,this,jquery" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://DreamFish12450.github.io">
+  <img class="avatar" src="https://DreamFish12450.github.io/images/avatar.png?v=1585146479515" alt="">
+  </a>
+  <h1 class="site-title">
+    DreamFish
+  </h1>
+  <p class="site-description">
+    摸鱼（记仇）日记
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              THIS FOR JS
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-03-25
+              </span>
+              <span>
+                5 min read
+              </span>
+              
+                <a href="https://DreamFish12450.github.io/tag/1YlXZ14NC/" class="post-tag">
+                  # js
+                </a>
+              
+                <a href="https://DreamFish12450.github.io/tag/9FBeT5MQQq/" class="post-tag">
+                  # this
+                </a>
+              
+                <a href="https://DreamFish12450.github.io/tag/dWggrRojD4/" class="post-tag">
+                  # jquery
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <!-- more -->
+<h1 id="js中的-this">JS中的 <code>this</code></h1>
+<h1 id="首先要区分js的this和jquery中的this">首先要区分JS的<code>this</code>和jquery中的<code>$(this)</code></h1>
+<h1 id="后者是将前者一个js对象包装成jquery对象">后者是将前者（一个JS对象）包装成JQuery对象</h1>
+<p>那么如何判断<code>this</code>呢。在网上找到了个<a href="https://cnodejs.org/topic/583d05b727d001d606ac1a54">决策树</a>，感觉挺好的（<s>不是</s>）</p>
+<pre><code>    if (this 位于非箭头函数中) {
+    if (函数使用 new 调用，即作为构造函数被调用) {  1️⃣
+
+        [this 指向新创建的对象]
+    } else if (函数使用 . 调用，即作为对象方法被调用) {2️⃣
+        [this 指向 . 之前的对象]
+    } else {
+        if (严格模式) {3️⃣
+        [this 为 undefined]
+        } else {
+        [this 为 null]
+        [但，使用 undefined 或者 null 指定 this 时，this 指向全局对象]
+        [this 指向全局对象]
+        }
+    }
+    } else if (this 位于箭头函数中) {4️⃣
+    [词法分析时，函数所处作用域的 this]
+    } else {
+    [this 指向全局对象]
+    }
+</code></pre>
+<h3 id="1️⃣-做一个解释在一般情况下this都是指向全局对象window在浏览器内的-而一般的函数调用方式都是给这个全局对象增加属性">1️⃣ 做一个解释在一般情况下this都是指向全局对象(window在浏览器内)的 而一般的函数调用方式都是给这个全局对象增加属性</h3>
+<p>  给个例子:</p>
+<pre><code>    function coordinate(x, y){
+        this.x = x;
+        this.y = y;
+    }
+    var p1 = new coordinate(2,3)
+    console.log(p1)
+    //显示 coordinate {x: 2, y: 3}
+    var p2 = coordinate(3,4)
+    console.log(p2)
+    //显示 undefined
+</code></pre>
+<p>那么这个新的x和y属性去哪里了呢。由前面可知一般情况下或者说,未对this进行指定情况下,其指向全局对象。<br>
+  测试一下：</p>
+<pre><code>console.log(window.x,window.y)
+//显示  3 4
+</code></pre>
+<h3 id="2️⃣所指的则是一般的对象的方法调用方式如下代码所示">2️⃣所指的则是一般的对象的方法调用方式如下代码所示</h3>
+<pre><code>    const obj1 = {
+        x: 1,
+        y: 1,
+        setX(x, y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
+obj1.setX(3,4)
+console.log(obj1)
+//打印  {x: 3, y: 4, setX: ƒ}
+</code></pre>
+<h3 id="3️⃣在严格模式下如果将this指向undefined其指向为undefined若将其指向设置成null其指向即为null-那么后面我们要考虑的是如何改变this的指向是不是可以采用直接赋值的方式-显然并不这是不可行的-this不能在执行期间被赋值-这时候我们考虑使用call方法-代码和打印结果如下">3️⃣在严格模式下如果将this指向undefined其指向为undefined，若将其指向设置成null其指向即为null。那么后面我们要考虑的是如何改变this的指向？是不是可以采用直接赋值的方式。显然（并不）这是不可行的。<code>this</code>不能在执行期间被赋值！！。这时候我们考虑使用<code>call()</code>方法。代码和打印结果如下：</h3>
+<pre><code>    function demo1() {
+        'use strict';
+        return this;
+    }
+    function demo2() {
+        return this;
+    }
+demo1.call(undefined)
+//打印 undefined
+demo1.call(null)
+//打印 null
+
+</code></pre>
+<p>那么如果在<code>非严格模式</code>下会是什么样的呢。</p>
+<pre><code>demo2.call(undefined)
+//打印 Window {parent: Window, opener: null, top: Window, length: 0, frames: Window, …}
+</code></pre>
+<p>可以很明显的观察出他的this的指向变成了<code>全局对象</code>。</p>
+<h3 id="后面港港如何对this的指向进行改变-一般使用三个函数bindcallapply改变其指向">后面港港如何对<code>this</code>的指向进行改变。一般使用三个函数<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind">bind()</a>,<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/call">call()</a>,<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/apply">apply()</a>改变其指向。</h3>
+<br>
+<p><code>call(thisArg, arg1, arg2, ... )</code><br>
+方法使用一个指定的 this 值和单独给出的一个或多个参数来调用一个函数。<br><br>
+注意：该方法的语法和作用与 apply() 方法类似，只有一个区别，就是 call() 方法接受的是一个<code>参数列表</code>，而 apply() 方法接受的是一个包含<code>多个参数的数组</code>。（摘自MDN）<br><br>
+<code>注：</code>在非严格模式下若thisArg的取值为null或者undefined 会自动变成全局对象；apply也是同样的道理<br><br>
+<code>bind(thisArg,arg1 …)</code><br><br>
+bind() 方法创建一个新的函数，在 bind() 被调用时，这个新函数的 this 被指定为 bind<br>(thisArg,arg1 …) 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。（摘自MDN）.<br><br>
+举一个简单的应用：-------可以将this绑定到thisArg对象上。可以很好的在函数中的变量名与全局中的对象名相同时，选择到对象中的变量名。<br></p>
+<pre><code> this.x = 5;
+   var obj3 = {
+       x: 19,
+       getX: function() { return this.x; }
+   };
+   var unbindX = obj3.getX;
+   unbindX();
+   //打印的是全局变量x 5
+   var bindX = unbindX.bind(obj3);
+   //将他绑定对象obj3上。所以他的this也指向了obj3
+   bindX();
+   //这时候打印19
+</code></pre>
+<h2 id="4️⃣对于箭头函数中一般不推荐在按钮的绑定事件中使用this指向的基本上都是window对象那么如上文的决策树所说什么是词法分析呢javascript作为函数性编程的语言-其在函数执行前函数块内语句的执行顺序就已经确定-大体顺序如下所示">4️⃣对于箭头函数中，一般不推荐在按钮的绑定事件中使用this指向的基本上都是window对象那么如上文的决策树所说什么是<code>词法分析</code>呢，javascript作为函数性编程的语言。其在函数执行前，函数块内语句的执行顺序就已经确定。大体顺序如下所示</h2>
+ <br>
+<p><img src="https://DreamFish12450.github.io/post-images/1585145085877.png" alt="" loading="lazy"><br>
+<br><br>
+需要注意赋值和声明的区别，赋值语句在执行使才会起作用<br>
+下面举一个栗子：<br>
+<img src="https://DreamFish12450.github.io/post-images/1585145160333.jpg" alt="" loading="lazy"></p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#js%E4%B8%AD%E7%9A%84-this">JS中的 <code>this</code></a></li>
+<li><a href="#%E9%A6%96%E5%85%88%E8%A6%81%E5%8C%BA%E5%88%86js%E7%9A%84this%E5%92%8Cjquery%E4%B8%AD%E7%9A%84this">首先要区分JS的<code>this</code>和jquery中的<code>$(this)</code></a></li>
+<li><a href="#%E5%90%8E%E8%80%85%E6%98%AF%E5%B0%86%E5%89%8D%E8%80%85%E4%B8%80%E4%B8%AAjs%E5%AF%B9%E8%B1%A1%E5%8C%85%E8%A3%85%E6%88%90jquery%E5%AF%B9%E8%B1%A1">后者是将前者（一个JS对象）包装成JQuery对象</a><br>
+*
+<ul>
+<li><a href="#1%EF%B8%8F%E2%83%A3-%E5%81%9A%E4%B8%80%E4%B8%AA%E8%A7%A3%E9%87%8A%E5%9C%A8%E4%B8%80%E8%88%AC%E6%83%85%E5%86%B5%E4%B8%8Bthis%E9%83%BD%E6%98%AF%E6%8C%87%E5%90%91%E5%85%A8%E5%B1%80%E5%AF%B9%E8%B1%A1window%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E7%9A%84-%E8%80%8C%E4%B8%80%E8%88%AC%E7%9A%84%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E6%96%B9%E5%BC%8F%E9%83%BD%E6%98%AF%E7%BB%99%E8%BF%99%E4%B8%AA%E5%85%A8%E5%B1%80%E5%AF%B9%E8%B1%A1%E5%A2%9E%E5%8A%A0%E5%B1%9E%E6%80%A7">1️⃣ 做一个解释在一般情况下this都是指向全局对象(window在浏览器内)的 而一般的函数调用方式都是给这个全局对象增加属性</a></li>
+<li><a href="#2%EF%B8%8F%E2%83%A3%E6%89%80%E6%8C%87%E7%9A%84%E5%88%99%E6%98%AF%E4%B8%80%E8%88%AC%E7%9A%84%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E6%96%B9%E5%BC%8F%E5%A6%82%E4%B8%8B%E4%BB%A3%E7%A0%81%E6%89%80%E7%A4%BA">2️⃣所指的则是一般的对象的方法调用方式如下代码所示</a></li>
+<li><a href="#3%EF%B8%8F%E2%83%A3%E5%9C%A8%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F%E4%B8%8B%E5%A6%82%E6%9E%9C%E5%B0%86this%E6%8C%87%E5%90%91undefined%E5%85%B6%E6%8C%87%E5%90%91%E4%B8%BAundefined%E8%8B%A5%E5%B0%86%E5%85%B6%E6%8C%87%E5%90%91%E8%AE%BE%E7%BD%AE%E6%88%90null%E5%85%B6%E6%8C%87%E5%90%91%E5%8D%B3%E4%B8%BAnull-%E9%82%A3%E4%B9%88%E5%90%8E%E9%9D%A2%E6%88%91%E4%BB%AC%E8%A6%81%E8%80%83%E8%99%91%E7%9A%84%E6%98%AF%E5%A6%82%E4%BD%95%E6%94%B9%E5%8F%98this%E7%9A%84%E6%8C%87%E5%90%91%E6%98%AF%E4%B8%8D%E6%98%AF%E5%8F%AF%E4%BB%A5%E9%87%87%E7%94%A8%E7%9B%B4%E6%8E%A5%E8%B5%8B%E5%80%BC%E7%9A%84%E6%96%B9%E5%BC%8F-%E6%98%BE%E7%84%B6%E5%B9%B6%E4%B8%8D%E8%BF%99%E6%98%AF%E4%B8%8D%E5%8F%AF%E8%A1%8C%E7%9A%84-this%E4%B8%8D%E8%83%BD%E5%9C%A8%E6%89%A7%E8%A1%8C%E6%9C%9F%E9%97%B4%E8%A2%AB%E8%B5%8B%E5%80%BC-%E8%BF%99%E6%97%B6%E5%80%99%E6%88%91%E4%BB%AC%E8%80%83%E8%99%91%E4%BD%BF%E7%94%A8call%E6%96%B9%E6%B3%95-%E4%BB%A3%E7%A0%81%E5%92%8C%E6%89%93%E5%8D%B0%E7%BB%93%E6%9E%9C%E5%A6%82%E4%B8%8B">3️⃣在严格模式下如果将this指向undefined其指向为undefined，若将其指向设置成null其指向即为null。那么后面我们要考虑的是如何改变this的指向？是不是可以采用直接赋值的方式。显然（并不）这是不可行的。<code>this</code>不能在执行期间被赋值！！。这时候我们考虑使用<code>call()</code>方法。代码和打印结果如下：</a></li>
+<li><a href="#%E5%90%8E%E9%9D%A2%E6%B8%AF%E6%B8%AF%E5%A6%82%E4%BD%95%E5%AF%B9this%E7%9A%84%E6%8C%87%E5%90%91%E8%BF%9B%E8%A1%8C%E6%94%B9%E5%8F%98-%E4%B8%80%E8%88%AC%E4%BD%BF%E7%94%A8%E4%B8%89%E4%B8%AA%E5%87%BD%E6%95%B0bindcallapply%E6%94%B9%E5%8F%98%E5%85%B6%E6%8C%87%E5%90%91">后面港港如何对<code>this</code>的指向进行改变。一般使用三个函数bind(),call(),apply()改变其指向。</a></li>
+<li><a href="#4%EF%B8%8F%E2%83%A3%E5%AF%B9%E4%BA%8E%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E4%B8%AD%E4%B8%80%E8%88%AC%E4%B8%8D%E6%8E%A8%E8%8D%90%E5%9C%A8%E6%8C%89%E9%92%AE%E7%9A%84%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6%E4%B8%AD%E4%BD%BF%E7%94%A8this%E6%8C%87%E5%90%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%B8%8A%E9%83%BD%E6%98%AFwindow%E5%AF%B9%E8%B1%A1%E9%82%A3%E4%B9%88%E5%A6%82%E4%B8%8A%E6%96%87%E7%9A%84%E5%86%B3%E7%AD%96%E6%A0%91%E6%89%80%E8%AF%B4%E4%BB%80%E4%B9%88%E6%98%AF%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%91%A2javascript%E4%BD%9C%E4%B8%BA%E5%87%BD%E6%95%B0%E6%80%A7%E7%BC%96%E7%A8%8B%E7%9A%84%E8%AF%AD%E8%A8%80-%E5%85%B6%E5%9C%A8%E5%87%BD%E6%95%B0%E6%89%A7%E8%A1%8C%E5%89%8D%E5%87%BD%E6%95%B0%E5%9D%97%E5%86%85%E8%AF%AD%E5%8F%A5%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F%E5%B0%B1%E5%B7%B2%E7%BB%8F%E7%A1%AE%E5%AE%9A-%E5%A4%A7%E4%BD%93%E9%A1%BA%E5%BA%8F%E5%A6%82%E4%B8%8B%E6%89%80%E7%A4%BA">4️⃣对于箭头函数中，一般不推荐在按钮的绑定事件中使用this指向的基本上都是window对象那么如上文的决策树所说什么是<code>词法分析</code>呢，javascript作为函数性编程的语言。其在函数执行前，函数块内语句的执行顺序就已经确定。大体顺序如下所示</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://DreamFish12450.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

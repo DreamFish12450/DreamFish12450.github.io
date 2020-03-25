@@ -2,24 +2,23 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | Gridea</title>
-<link rel="shortcut icon" href="https://DreamFish12450.github.io/favicon.ico?v=1585139994087">
+<title>prop()与attr() | DreamFish</title>
+<link rel="shortcut icon" href="https://DreamFish12450.github.io/favicon.ico?v=1585146479515">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://DreamFish12450.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="关于 | Gridea - Atom Feed" href="https://DreamFish12450.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="prop()与attr() | DreamFish - Atom Feed" href="https://DreamFish12450.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
     <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
-
-🏠 关于本站
-👨‍💻 博主是谁
-⛹ 兴趣爱好
-📬 联系我呀
-..." />
-    <meta name="keywords" content="" />
+attr(key) 获取属性其一般用于检索HTML对象的属性
+attr(key, value)设置属性
+prop（）属性操作的是JS对象其一般用来获取对象的属性
+来自菜鸟教程对于prop（）方法的解释
+返回属性的值：
+$(selector..." />
+    <meta name="keywords" content="jquery" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -28,13 +27,13 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://DreamFish12450.github.io">
-  <img class="avatar" src="https://DreamFish12450.github.io/images/avatar.png?v=1585139994087" alt="">
+  <img class="avatar" src="https://DreamFish12450.github.io/images/avatar.png?v=1585146479515" alt="">
   </a>
   <h1 class="site-title">
-    Gridea
+    DreamFish
   </h1>
   <p class="site-description">
-    温故而知新
+    摸鱼（记仇）日记
   </p>
   <div class="menu-container">
     
@@ -81,41 +80,64 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              prop()与attr()
             </h2>
             <div class="post-info">
               <span>
                 2019-01-25
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
+              
+                <a href="https://DreamFish12450.github.io/tag/dWggrRojD4/" class="post-tag">
+                  # jquery
+                </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+                <!-- more -->
+<p><code>attr(key)</code> 获取属性其一般用于检索HTML对象的属性</p>
+<p><code>attr(key, value)</code>设置属性<br><br>
+<code>prop（）</code>属性操作的是JS对象其一般用来获取对象的属性<br><br>
+来自菜鸟教程对于prop（）方法的解释<br><br>
+返回属性的值：<br><br>
+<code>$(selector).prop(property)</code></p>
+<p>设置属性和值：</p>
+<p><code>$(selector).prop(property,value)</code></p>
+<p>使用函数设置属性和值：</p>
+<p><code>$(selector).prop(property,function(index,currentvalue))</code></p>
+<p>设置多个属性和值：<br>
+<code>$(selector).prop({property:value, property:value,...})</code><br>
+对第三个做一个简单的解释：使用其去对复选框进行全选<br></p>
+<pre><code>&lt;body&gt;
+    &lt;input type=&quot;checkbox&quot; value=&quot;basektball&quot; name=&quot;hobby&quot;&gt;篮球
+    &lt;input type=&quot;checkbox&quot; value=&quot;footerball&quot; name=&quot;hobby&quot;&gt;足球
+    &lt;input type=&quot;checkbox&quot; value=&quot;writing&quot; checked=&quot;checked&quot; name=&quot;hobby&quot;&gt;书法
+    &lt;input type=&quot;checkbox&quot; value=&quot;music&quot; name=&quot;hobby&quot;&gt;音乐
+    &lt;br&gt;
+    &lt;input type=&quot;checkbox&quot; value=&quot;paint&quot; name=&quot;hobby&quot;&gt;绘画
+    &lt;input type=&quot;checkbox&quot; value=&quot;box&quot; name=&quot;hobby&quot;&gt;散打
+    &lt;input type=&quot;checkbox&quot; value=&quot;yoga&quot; checked=&quot;checked&quot; name=&quot;hobby&quot;&gt;瑜伽
+    &lt;input type=&quot;checkbox&quot; value=&quot;another&quot; name=&quot;hobby&quot;&gt;其他
+    &lt;button onclick=&quot; return check()&quot;&gt;111111111&lt;/button&gt;
+
+&lt;/body&gt;
+&lt;script&gt;
+    check = () =&gt; {
+        $(&quot;[name = 'hobby']&quot;).prop('checked', (index,currenValue) =&gt; {
+            console.log($($(&quot;[name = 'hobby']&quot;)[index]).prop('checked', true));
+            // 第一个通过Index获取到的是DOM对象，因为prop方法是jquery对象的专有，所以需要用jquery运算符将其转换为jquery对象
+        })
+    };
+&lt;/script&gt;
+</code></pre>
 
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
-</ul>
-</li>
-</ul>
-
+                
               </div>
             </div>
           </article>
