@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://DreamFish12450.github.io</id>
     <title>DreamFish</title>
-    <updated>2020-04-13T14:26:59.634Z</updated>
+    <updated>2020-04-13T14:33:55.043Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://DreamFish12450.github.io"/>
     <link rel="self" href="https://DreamFish12450.github.io/atom.xml"/>
@@ -17,7 +17,8 @@
         </link>
         <updated>2020-04-13T13:53:33.000Z</updated>
         <content type="html"><![CDATA[<h1 id="valtexthtml和一些简单的css选择器">val(),text(）,html()和一些简单的css选择器</h1>
-<p><br>我们先刚刚<code>html()</code>和<code>text()</code>的区别;<br><br>
+<p><img src="http://q7stlqa0s.bkt.clouddn.com/image/idollailai.jpg" alt="laopo" loading="lazy"><br><br>
+<br>我们先刚刚<code>html()</code>和<code>text()</code>的区别;<br><br>
 <a href="https://www.jquery123.com/text/">.text()</a>方法得到匹配集合元素中的每个元素<br><br>
 <a href="https://www.jquery123.com/html/">.html()</a>只能得到匹配集合元素中的第一个元素的HTML内容<br><br>
 下面我们先来直观的观看.html()和.text()的实例<br></p>
