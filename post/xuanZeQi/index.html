@@ -1,0 +1,262 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>val(),text(）,html()和一些简单的css选择器 | DreamFish</title>
+<link rel="shortcut icon" href="https://DreamFish12450.github.io/favicon.ico?v=1586787997874">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://DreamFish12450.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="val(),text(）,html()和一些简单的css选择器 | DreamFish - Atom Feed" href="https://DreamFish12450.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="val(),text(）,html()和一些简单的css选择器
+我们先刚刚html()和text()的区别;
+.text()方法得到匹配集合元素中的每个元素
+.html()只能得到匹配集合元素中的第一个元素的HTML内容
+下面我们先来直观的..." />
+    <meta name="keywords" content="选择器,jquery" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://DreamFish12450.github.io">
+  <img class="avatar" src="https://DreamFish12450.github.io/images/avatar.png?v=1586787997874" alt="">
+  </a>
+  <h1 class="site-title">
+    DreamFish
+  </h1>
+  <p class="site-description">
+    摸鱼（记仇）日记
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              val(),text(）,html()和一些简单的css选择器
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-04-13
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+                <a href="https://DreamFish12450.github.io/tag/bgInWIeB_/" class="post-tag">
+                  # 选择器
+                </a>
+              
+                <a href="https://DreamFish12450.github.io/tag/dWggrRojD4/" class="post-tag">
+                  # jquery
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h1 id="valtexthtml和一些简单的css选择器">val(),text(）,html()和一些简单的css选择器</h1>
+<p><br>我们先刚刚<code>html()</code>和<code>text()</code>的区别;<br><br>
+<a href="https://www.jquery123.com/text/">.text()</a>方法得到匹配集合元素中的每个元素<br><br>
+<a href="https://www.jquery123.com/html/">.html()</a>只能得到匹配集合元素中的第一个元素的HTML内容<br><br>
+下面我们先来直观的观看.html()和.text()的实例<br></p>
+<p><img src="http://q7stlqa0s.bkt.clouddn.com/image/blog2_exam1exam1.jpg" alt="exam1" loading="lazy"><br></p>
+<p>显然的可以看出,其中一个返回的是文本内容另一个</p>
+<p>返回的是一个HTML的文本<br><br>
+那么其中的text()中的<code>每个元素</code>和<code>html()</code>中的第一个元素又怎么进行理解呢?<br>
+还是看个例子</p>
+<pre><code>&lt;body&gt;
+    &lt;p&gt;&lt;b&gt;Test&lt;/b&gt; Paragraph.&lt;/p&gt;
+    &lt;p&gt;&lt;b&gt;Test2&lt;/b&gt; Paragraph2.&lt;/p&gt;
+&lt;/body&gt;
+&lt;script&gt;
+    console.log($(&quot;p&quot;).html());
+    console.log($(&quot;p&quot;).text());
+&lt;/script&gt;
+</code></pre>
+<p>他的结果则如下所示</p>
+<pre><code>&lt;b&gt;Test&lt;/b&gt; Paragraph.
+Test Paragraph.Test2 Paragraph2.
+</code></pre>
+<p>可以很明显的看出.text()方法得到匹配集合元素中的每个元素，<br>
+而HTML只能得到匹配集合元素中的第一个元素的HTML内容<br><br>
+再来点骚操作(改自官方文档的例子)<br></p>
+<p><img src="http://q7stlqa0s.bkt.clouddn.com/image/blog2_exam1exam2.jpg" alt="exam2" loading="lazy"><br><br>
+这里使用了子元素选择器（冒号）和包含选择器（空格）<br>
+那么这个加不加空格有啥区别呢<code>p:first</code>代表是选中的是第一个p元素，而<code>p :first</code>则选择的是p元素中的第一个子元素<br><br>
+那么问题来了既然.text()是得到匹配元素集合中每个元素的合并文本，包括他们的后代那么$(p :first)为什么只能匹配到的只有test呢 ?<span style ="color:yellow">因为子类选择器只能匹配到一个元素哦</span><br>
+<br><br>
+<br><br>
+与<code>.html(text)</code>可以修改被选择元素的html内容相同，<code>.text(text)</code>也可以修改被选择元素的内容。但是有一点需要注意。在修改时他会调用DOM 方法 <code>.createTextNode()</code>, 一种替代的特殊字符与HTML对应（原来的<code>&lt;</code>会被替换成<code>&amp;lt</code>;）</p>
+<p><img src="http://q7stlqa0s.bkt.clouddn.com/image/blog2_exam1exam3.jpg" alt="exam3" loading="lazy"><br></p>
+<h3 id="港港本篇的第三个主角valbr">港港本篇的第三个主角<code>.val()</code><br></h3>
+<p><code>.text()</code> 方法不能使用在 input 元素或scripts元素上。而这时就需要使用 <code>.val()</code> 方法获取或设置文本值。得到scripts元素的值使用<br><br>
+那么使用<code>.text()</code>会出现什么呢？啥都不会返回！返回的也不是undefined是一个空值！<br><br>
+.val()对一般文本不起作用即使你设置了他的value属性对于表单类的标签如<code>input</code>和<code>select</code> .val()会返回其设置的value属性 若未设置则等同于.text()返回其中的文本<br><br>
+同时他也有val(value)这个方法其实用来设置<code>对象的value值</code></p>
+<h3 id="港港选择器">港港选择器</h3>
+<pre><code>$('select.foo option:selected').val();    // get the value from a dropdown select
+$('select.foo').val();                    // get the value from a dropdown select even easier
+$('input:checkbox:checked').val();        // get the value from a checked checkbox
+$('input:radio[name=bar]:checked').val(); // get the value from a set of radio buttons
+</code></pre>
+<p>这个是官方文档中所写的就是俺debug了半天猜得到相似的（记仇1/1）<br><br>
+再做一点简单的扩展<br>
+<br></p>
+<pre><code>var radioVal = $(&quot;input[type = 'radio'][name='radioName'][checked = 'checked']&quot;).val();//应该看的懂吧
+</code></pre>
+<p>还有 就是对以前的api中的@选择器的一个说明这个东西是一个属性选择器现在可以用<code>[attr = ‘attrValue’]</code>来代替,一定要关注这里的是没有<code>空格</code>的</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#valtexthtml%E5%92%8C%E4%B8%80%E4%BA%9B%E7%AE%80%E5%8D%95%E7%9A%84css%E9%80%89%E6%8B%A9%E5%99%A8">val(),text(）,html()和一些简单的css选择器</a><br>
+*
+<ul>
+<li><a href="#%E6%B8%AF%E6%B8%AF%E6%9C%AC%E7%AF%87%E7%9A%84%E7%AC%AC%E4%B8%89%E4%B8%AA%E4%B8%BB%E8%A7%92valbr">港港本篇的第三个主角<code>.val()</code><br></a></li>
+<li><a href="#%E6%B8%AF%E6%B8%AF%E9%80%89%E6%8B%A9%E5%99%A8">港港选择器</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://DreamFish12450.github.io/post/this-for-js/">
+              <h3 class="post-title">
+                THIS FOR JS
+              </h3>
+            </a>
+          </div>
+        
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '62c3fdadbe7d1fa02a37',
+    clientSecret: '0debf75f342a4e1698325961008b48d0063ad20d',
+    repo: 'DreamFish12450.github.io',
+    owner: 'DreamFish12450',
+    admin: ['DreamFish12450'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://DreamFish12450.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

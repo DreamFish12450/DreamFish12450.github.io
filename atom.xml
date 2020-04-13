@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://DreamFish12450.github.io</id>
     <title>DreamFish</title>
-    <updated>2020-03-25T14:36:17.884Z</updated>
+    <updated>2020-04-13T14:26:59.634Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://DreamFish12450.github.io"/>
     <link rel="self" href="https://DreamFish12450.github.io/atom.xml"/>
@@ -10,6 +10,65 @@
     <logo>https://DreamFish12450.github.io/images/avatar.png</logo>
     <icon>https://DreamFish12450.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, DreamFish</rights>
+    <entry>
+        <title type="html"><![CDATA[val(),text(）,html()和一些简单的css选择器]]></title>
+        <id>https://DreamFish12450.github.io/post/xuanZeQi/</id>
+        <link href="https://DreamFish12450.github.io/post/xuanZeQi/">
+        </link>
+        <updated>2020-04-13T13:53:33.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="valtexthtml和一些简单的css选择器">val(),text(）,html()和一些简单的css选择器</h1>
+<p><br>我们先刚刚<code>html()</code>和<code>text()</code>的区别;<br><br>
+<a href="https://www.jquery123.com/text/">.text()</a>方法得到匹配集合元素中的每个元素<br><br>
+<a href="https://www.jquery123.com/html/">.html()</a>只能得到匹配集合元素中的第一个元素的HTML内容<br><br>
+下面我们先来直观的观看.html()和.text()的实例<br></p>
+<p><img src="http://q7stlqa0s.bkt.clouddn.com/image/blog2_exam1exam1.jpg" alt="exam1" loading="lazy"><br></p>
+<p>显然的可以看出,其中一个返回的是文本内容另一个</p>
+<p>返回的是一个HTML的文本<br><br>
+那么其中的text()中的<code>每个元素</code>和<code>html()</code>中的第一个元素又怎么进行理解呢?<br>
+还是看个例子</p>
+<pre><code>&lt;body&gt;
+    &lt;p&gt;&lt;b&gt;Test&lt;/b&gt; Paragraph.&lt;/p&gt;
+    &lt;p&gt;&lt;b&gt;Test2&lt;/b&gt; Paragraph2.&lt;/p&gt;
+&lt;/body&gt;
+&lt;script&gt;
+    console.log($(&quot;p&quot;).html());
+    console.log($(&quot;p&quot;).text());
+&lt;/script&gt;
+</code></pre>
+<p>他的结果则如下所示</p>
+<pre><code>&lt;b&gt;Test&lt;/b&gt; Paragraph.
+Test Paragraph.Test2 Paragraph2.
+</code></pre>
+<p>可以很明显的看出.text()方法得到匹配集合元素中的每个元素，<br>
+而HTML只能得到匹配集合元素中的第一个元素的HTML内容<br><br>
+再来点骚操作(改自官方文档的例子)<br></p>
+<p><img src="http://q7stlqa0s.bkt.clouddn.com/image/blog2_exam1exam2.jpg" alt="exam2" loading="lazy"><br><br>
+这里使用了子元素选择器（冒号）和包含选择器（空格）<br>
+那么这个加不加空格有啥区别呢<code>p:first</code>代表是选中的是第一个p元素，而<code>p :first</code>则选择的是p元素中的第一个子元素<br><br>
+那么问题来了既然.text()是得到匹配元素集合中每个元素的合并文本，包括他们的后代那么$(p :first)为什么只能匹配到的只有test呢 ?<span style ="color:yellow">因为子类选择器只能匹配到一个元素哦</span><br>
+<br><br>
+<br><br>
+与<code>.html(text)</code>可以修改被选择元素的html内容相同，<code>.text(text)</code>也可以修改被选择元素的内容。但是有一点需要注意。在修改时他会调用DOM 方法 <code>.createTextNode()</code>, 一种替代的特殊字符与HTML对应（原来的<code>&lt;</code>会被替换成<code>&amp;lt</code>;）</p>
+<p><img src="http://q7stlqa0s.bkt.clouddn.com/image/blog2_exam1exam3.jpg" alt="exam3" loading="lazy"><br></p>
+<h3 id="港港本篇的第三个主角valbr">港港本篇的第三个主角<code>.val()</code><br></h3>
+<p><code>.text()</code> 方法不能使用在 input 元素或scripts元素上。而这时就需要使用 <code>.val()</code> 方法获取或设置文本值。得到scripts元素的值使用<br><br>
+那么使用<code>.text()</code>会出现什么呢？啥都不会返回！返回的也不是undefined是一个空值！<br><br>
+.val()对一般文本不起作用即使你设置了他的value属性对于表单类的标签如<code>input</code>和<code>select</code> .val()会返回其设置的value属性 若未设置则等同于.text()返回其中的文本<br><br>
+同时他也有val(value)这个方法其实用来设置<code>对象的value值</code></p>
+<h3 id="港港选择器">港港选择器</h3>
+<pre><code>$('select.foo option:selected').val();    // get the value from a dropdown select
+$('select.foo').val();                    // get the value from a dropdown select even easier
+$('input:checkbox:checked').val();        // get the value from a checked checkbox
+$('input:radio[name=bar]:checked').val(); // get the value from a set of radio buttons
+</code></pre>
+<p>这个是官方文档中所写的就是俺debug了半天猜得到相似的（记仇1/1）<br><br>
+再做一点简单的扩展<br>
+<br></p>
+<pre><code>var radioVal = $(&quot;input[type = 'radio'][name='radioName'][checked = 'checked']&quot;).val();//应该看的懂吧
+</code></pre>
+<p>还有 就是对以前的api中的@选择器的一个说明这个东西是一个属性选择器现在可以用<code>[attr = ‘attrValue’]</code>来代替,一定要关注这里的是没有<code>空格</code>的</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[THIS FOR JS]]></title>
         <id>https://DreamFish12450.github.io/post/this-for-js/</id>
