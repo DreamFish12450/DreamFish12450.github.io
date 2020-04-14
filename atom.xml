@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://DreamFish12450.github.io</id>
     <title>DreamFish</title>
-    <updated>2020-04-13T14:33:55.043Z</updated>
+    <updated>2020-04-14T08:34:22.215Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://DreamFish12450.github.io"/>
     <link rel="self" href="https://DreamFish12450.github.io/atom.xml"/>
@@ -11,7 +11,7 @@
     <icon>https://DreamFish12450.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, DreamFish</rights>
     <entry>
-        <title type="html"><![CDATA[val(),text(）,html()和一些简单的css选择器]]></title>
+        <title type="html"><![CDATA[val(),text(）,html()和一些简单的jquery选择器]]></title>
         <id>https://DreamFish12450.github.io/post/xuanZeQi/</id>
         <link href="https://DreamFish12450.github.io/post/xuanZeQi/">
         </link>
