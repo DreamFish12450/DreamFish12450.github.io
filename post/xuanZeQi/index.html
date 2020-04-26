@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>val(),text(）,html()和一些简单的jquery选择器 | DreamFish</title>
-<link rel="shortcut icon" href="https://DreamFish12450.github.io/favicon.ico?v=1586853255290">
+<link rel="shortcut icon" href="https://DreamFish12450.github.io/favicon.ico?v=1587893639077">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://DreamFish12450.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="val(),text(）,html()和一些简单的jquery选择器 | DreamFish - Atom Feed" href="https://DreamFish12450.github.io/atom.xml">
@@ -26,7 +26,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://DreamFish12450.github.io">
-  <img class="avatar" src="https://DreamFish12450.github.io/images/avatar.png?v=1586853255290" alt="">
+  <img class="avatar" src="https://DreamFish12450.github.io/images/avatar.png?v=1587893639077" alt="">
   </a>
   <h1 class="site-title">
     DreamFish
@@ -102,12 +102,12 @@
             <div class="post-content-wrapper">
               <div class="post-content">
                 <h1 id="valtexthtml和一些简单的css选择器">val(),text(）,html()和一些简单的css选择器</h1>
-<p><img src="http://q7stlqa0s.bkt.clouddn.com/image/idollailai.jpg" alt="laopo" loading="lazy"><br><br>
+<p><img src="https://i.loli.net/2020/04/26/en7MmxUCy64GjNL.jpg" alt="laopo" loading="lazy"><br><br>
 <br>我们先刚刚<code>html()</code>和<code>text()</code>的区别;<br><br>
 <a href="https://www.jquery123.com/text/">.text()</a>方法得到匹配集合元素中的每个元素<br><br>
 <a href="https://www.jquery123.com/html/">.html()</a>只能得到匹配集合元素中的第一个元素的HTML内容<br><br>
 下面我们先来直观的观看.html()和.text()的实例<br></p>
-<p><img src="http://q7stlqa0s.bkt.clouddn.com/image/blog2_exam1exam1.jpg" alt="exam1" loading="lazy"><br></p>
+<p><img src="https://i.loli.net/2020/04/26/vD2YebCfTULwZsi.png" alt="exam1" loading="lazy"><br></p>
 <p>显然的可以看出,其中一个返回的是文本内容另一个</p>
 <p>返回的是一个HTML的文本<br><br>
 那么其中的text()中的<code>每个元素</code>和<code>html()</code>中的第一个元素又怎么进行理解呢?<br>
@@ -128,14 +128,14 @@ Test Paragraph.Test2 Paragraph2.
 <p>可以很明显的看出.text()方法得到匹配集合元素中的每个元素，<br>
 而HTML只能得到匹配集合元素中的第一个元素的HTML内容<br><br>
 再来点骚操作(改自官方文档的例子)<br></p>
-<p><img src="http://q7stlqa0s.bkt.clouddn.com/image/blog2_exam1exam2.jpg" alt="exam2" loading="lazy"><br><br>
+<p><img src="https://i.loli.net/2020/04/26/vD2YebCfTULwZsi.png" alt="exam2" loading="lazy"><br><br>
 这里使用了子元素选择器（冒号）和包含选择器（空格）<br>
 那么这个加不加空格有啥区别呢<code>p:first</code>代表是选中的是第一个p元素，而<code>p :first</code>则选择的是p元素中的第一个子元素<br><br>
 那么问题来了既然.text()是得到匹配元素集合中每个元素的合并文本，包括他们的后代那么$(p :first)为什么只能匹配到的只有test呢 ?<span style ="color:yellow">因为子类选择器只能匹配到一个元素哦</span><br>
 <br><br>
 <br><br>
 与<code>.html(text)</code>可以修改被选择元素的html内容相同，<code>.text(text)</code>也可以修改被选择元素的内容。但是有一点需要注意。在修改时他会调用DOM 方法 <code>.createTextNode()</code>, 一种替代的特殊字符与HTML对应（原来的<code>&lt;</code>会被替换成<code>&amp;lt</code>;）</p>
-<p><img src="http://q7stlqa0s.bkt.clouddn.com/image/blog2_exam1exam3.jpg" alt="exam3" loading="lazy"><br></p>
+<p><img src="https://i.loli.net/2020/04/26/vD2YebCfTULwZsi.png" alt="exam3" loading="lazy"><br></p>
 <h3 id="港港本篇的第三个主角valbr">港港本篇的第三个主角<code>.val()</code><br></h3>
 <p><code>.text()</code> 方法不能使用在 input 元素或scripts元素上。而这时就需要使用 <code>.val()</code> 方法获取或设置文本值。得到scripts元素的值使用<br><br>
 那么使用<code>.text()</code>会出现什么呢？啥都不会返回！返回的也不是undefined是一个空值！<br><br>
